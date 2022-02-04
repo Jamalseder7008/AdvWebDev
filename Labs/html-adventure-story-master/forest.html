@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Adventure Game</title>
+        <link rel="icon" href="assets/dragon-logo.png"/>
+    </head>
+    <body>
+        <h1>Forest</h1>
+        <hr>
+        <img src='assets/forest.gif' width="480">
+        <p>So you wander into the forest to the left is a winding path up the hills to the right is the path to the swamp</p>
+        <ul>
+            <li><a id="swamp" href="swamp.html">Go right to the Swamp</a></li>
+            <li><a id="hills" href="goblin.html">Go left to the Hills</a></li>
+        </ul>
+        <p>
+            <a id="exit" href="overworld.html">Exit</a>
+
+        </p>
+        <iframe src="inventory.html" id=inventory height=100 width=125></iframe>
+        <script>
+            inventory.src += location.search;  //append queryString to frameURL
+            exit.href += location.search;   //append queryString to Exit
+            hills.href += location.search;    //append queryString to Hills
+            swamp.href += location.search;    //append queryString to swamp
+        </script>
+    </body>
+</html>
