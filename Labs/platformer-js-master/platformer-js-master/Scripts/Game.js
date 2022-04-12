@@ -4,6 +4,7 @@ class Game {
     #isOver;
     #level;
     #scene;
+    #controller;
 
     constructor(){
         this.#isOver = false;
@@ -11,11 +12,32 @@ class Game {
         this.#level = 0;
         const levelData = this.#world.getLevel( this.#level );
         this.#scene = new Scene(levelData);
+        const player = this.#scene.getPlayer();
+        this.#controller = new Controller(player);
         
     }
 
+    loadScene(){
+        const map = this.#world.getLevel(this.#level);
+        this.#scene = new Scene(map);
+        this.#controller = new Controller( this.#scene.getPlayer() );
+    }
+
     update(){
+        this.#controller.update();
         this.#scene.update();
+        if( this.#scene.getExit().isTouching(this.#scene.getPlayer() ) ){
+            this.#level++;
+            if(this.#level < this.#world.getLength() ){
+                this.loadScene();
+            }
+            else{
+                this.#isOver = true;
+            }
+        }
+        if(this.#scene.hasCollisions()){
+            this.loadScene();
+        }
     }
 
     render(){

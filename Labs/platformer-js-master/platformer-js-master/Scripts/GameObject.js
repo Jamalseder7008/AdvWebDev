@@ -15,6 +15,12 @@ class GameObject {
         this.#image.src = src;
     }
 
+    getWidth(){
+        return this.#width;
+    }
+    getHeight(){
+        return this.#height;
+    }
     getX() {
         return this.#x;
     }
@@ -23,10 +29,14 @@ class GameObject {
     }
 
     move(x, y) {
+        console.log("Move to", x, y)
         this.#x = x;
         this.#y = y;
     }
         
+    setImage(img){
+        this.#image = img;
+    }
 
     draw() {
         view.picture(this.#image, this.#x, this.#y, this.#width, this.#height);
